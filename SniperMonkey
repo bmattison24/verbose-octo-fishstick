@@ -1,0 +1,33 @@
+
+public class SniperMonkey extends Tower
+{
+	private int pierce;
+	
+	
+	public SniperMonkey(int range, int damage, int fireRate, int numTargets, int pierce)
+	{
+		super(range, damage, fireRate, numTargets);
+		this.pierce = pierce;
+	}
+	
+	
+	@Override
+	public void attack()
+	{
+		pierce = getNumTargets();
+		for(int i = 0; i< getNumTargets(); i++)
+		{
+			Balloon target = findTarget();
+			
+			if(target != null)
+			{
+				target.takeDamage(getDamage());//takeDamage method would subtract 'damage' from the balloons health
+				
+				pierce--;
+				
+				if(pierce == 0)
+					break;
+			}
+		}
+	}
+}
