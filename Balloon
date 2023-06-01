@@ -1,0 +1,78 @@
+import java.awt.geom.Ellipse2D;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JComponent;
+
+public class Balloon extends JComponent
+{
+	
+	private int health;
+	//balloon health
+	private String colorS;
+	//color for arguments
+	private Color colorC;
+	//color for setting color
+	private Ellipse2D.Double balloon;
+	//balloon oval
+
+	//color1 for arguments, color2 for actual color
+	public Balloon(String colorS, Color colorC)
+	{
+		//checking colorS argument for the color of the balloon
+		if(colorS.equals("red"))
+		{
+			health = 1;
+			this.colorC = colorC;
+			this.colorS = "red";
+		}
+		if(colorS.equals("blue"))
+		{
+			health = 2;
+			this.colorC = colorC;
+			this.colorS = "blue";
+		}
+		if(colorS.equals("yellow"))
+		{
+			health = 4;
+			this.colorC = colorC;
+			this.colorS = "yellow";
+		}
+		if(colorS.equals("green"))
+		{
+			health = 8;
+			this.colorC = colorC;
+			this.colorS = "green";
+		}
+		if(colorS.equals("pink"))
+		{
+			health = 16;
+			this.colorC = colorC;
+			this.colorS = "pink";
+		}
+		if(colorS.equals("purple"))
+		{
+			health = 32;
+			this.colorC = colorC;
+			this.colorS = "purple";
+		}
+		
+		//creates balloon object
+		balloon = new Ellipse2D.Double(0,0,15,20);
+		this.setBounds(0,300,16,21);
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		//makes and draws a balloon
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(colorC);
+		g2.draw(balloon);
+		g2.fill(balloon);
+	}
+
+	public void takeDamage(int damage) 
+	{
+		health -= damage;
+	}
+}
