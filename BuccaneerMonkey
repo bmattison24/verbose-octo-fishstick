@@ -1,0 +1,59 @@
+
+public class BuccaneerMonkey extends Tower
+{
+	private boolean grapeShot;
+	private boolean hotShot;
+	
+	
+	public BuccaneerMonkey(int range, int damage, int fireRate, int numTargets)
+	{
+		super(range, damage, fireRate, numTargets);
+		grapeShot = false;
+		hotShot = false;
+	}
+	
+	
+	@Override
+	public void attack()
+	{
+		if(hotShot)
+		{
+			
+			for(Balloon target: Balloons)
+			{
+				for(int i = 0; i < 4; i++)
+				{
+					HotGrape hotGrape = new HotGrape(target.getPosition());
+					hotGrape.launch();
+				}
+			}
+		}
+		else if(grapeShot)
+		{
+			
+			for(Balloon target: Balloons)
+			{
+				for(int i= 0; i<4; i++)
+					Grape grape = new Grape(target.getPosition());
+					grape.launch();
+			}
+		}
+		
+		for(Balloon target: Balloons)
+		{
+			Projectile dart = new Projectile(target.getPosition());
+			dart.launch();
+		}
+		
+	}
+	
+	
+	public void grapeShotOn()
+	{
+		grapeShot = true;
+	}
+	public void hotShot()
+	{
+		hotShot = true;
+	}
+}
