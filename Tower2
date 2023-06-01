@@ -1,0 +1,66 @@
+import java.util.ArrayList;
+
+public abstract class Tower 
+{
+	private int range;
+	private int damage;
+	private int fireRate;
+	private int numTargets;
+	
+	public Tower(int range, int damage, int fireRate, int numTargets)
+	{
+		this.range = range;
+		this.damage = damage;
+		this.fireRate = fireRate;
+		this.numTargets = numTargets;
+	}
+	
+	public abstract void attack();
+	
+	//allow for tower upgrades
+	public void upgradeRange(int range)
+	{
+		this.range += range;
+	}
+	
+	public void upgradeDamage(int damage)
+	{
+		this.damage += damage;
+	}
+	
+	public void upgradeFireRate(int fireRate)
+	{
+		this.fireRate += fireRate;
+	}
+	
+	public void upgradeNumTargets(int numTargets)
+	{
+		this.numTargets += numTargets;
+	}
+	//if more practical, these can be changed to 'variable' *=2
+	
+	
+	//return tower data
+	public int getRange()
+	{
+		return range;
+	}
+	public int getDamage()
+	{
+		return damage;
+	}
+	public int getFireRate()
+	{
+		return fireRate;
+	}
+	public int getNumTargets()
+	{
+		return numTargets;
+	}
+	
+	
+	public Balloon findTarget(ArrayList <Balloon> Balloons)//assuming we keep track of the balloons on the screen in an arraylist
+	{
+		return Balloons.get(0);//assuming the first index would be the farthest balloon on the track
+	}
+}
